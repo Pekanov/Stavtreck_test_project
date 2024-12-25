@@ -26,7 +26,7 @@ public class LocationService {
                 .build();
     }
 
-    private String getAddress(double latitude, double longitude) {
+    public String getAddress(double latitude, double longitude) {
         try {
             String url = String.format(Locale.US, "https://nominatim.openstreetmap.org/reverse?format=json&lat=%f&lon=%f", latitude, longitude);
             var response = restTemplate.getForObject(url, Map.class);
@@ -41,7 +41,7 @@ public class LocationService {
         }
     }
 
-    private double calculateDistance(double[] start, double[] end) {
+    public double calculateDistance(double[] start, double[] end) {
         double latitudeDelta = toRadians(end[0] - start[0]);
         double longitudeDelta = toRadians(end[1] - start[1]);
         double startLatRad = toRadians(start[0]);
