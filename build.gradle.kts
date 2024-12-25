@@ -13,6 +13,13 @@ java {
     }
 }
 
+tasks.jar {
+    archiveBaseName.set("app") // Имя JAR файла
+    manifest {
+        attributes["Main-Class"] = "com/example/stavtreck_test_project/StavtreckTestProjectApplication.java"
+    }
+}
+
 configurations {
     compileOnly {
         extendsFrom(configurations.annotationProcessor.get())
