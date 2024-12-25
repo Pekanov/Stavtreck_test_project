@@ -6,6 +6,7 @@ import lombok.Data;
 @Builder
 @Data
 public class ResponseDTO {
+
     double[] startPos;
     double[] endPos;
     String startAddress;
