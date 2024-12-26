@@ -92,7 +92,7 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build with Gradle Wrapper
-        run: ./gradlew build
+        run: ./gradlew clean build --stacktrace --no-daemon
 
       - name: List build/libs directory
         run: ls -la build/libs
