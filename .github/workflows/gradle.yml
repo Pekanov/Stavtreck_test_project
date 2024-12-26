@@ -88,6 +88,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Build with Gradle Wrapper
+        run: ./gradlew build
+
+      - name: List build/libs directory
+        run: ls -la build/libs
+
       # Собираем Docker-образ
       - name: Build Docker image
         run: |
