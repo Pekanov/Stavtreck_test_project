@@ -83,26 +83,26 @@ jobs:
     runs-on: self-hosted
     needs: dependency-submission
 
-  steps:
-    # Клонируем репозиторий
-    - name: Checkout repository
-      uses: actions/checkout@v3
+    steps:
+      # Клонируем репозиторий
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    # Собираем Docker-образ
-    - name: Build Docker image
-      run: |
-        docker build -t your-app-name:latest .
+      # Собираем Docker-образ
+      - name: Build Docker image
+        run: |
+          docker build -t your-app-name:latest .
 
-    # Удаляем старый контейнер (если существует)
-    - name: Stop and remove old container
-      run: |
-        docker stop your-app-container || true
-        docker rm your-app-container || true
+      # Удаляем старый контейнер (если существует)
+      - name: Stop and remove old container
+        run: |
+          docker stop your-app-container || true
+          docker rm your-app-container || true
 
-    # Запускаем новый контейнер
-    - name: Run new container
-      run: |
-        docker run -d --name your-app-container -p 80:8080 your-app-name:latest
+      # Запускаем новый контейнер
+      - name: Run new container
+        run: |
+          docker run -d --name your-app-container -p 80:8080 your-app-name:latest
 
 
     
