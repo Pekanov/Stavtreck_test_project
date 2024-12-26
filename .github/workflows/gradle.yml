@@ -78,3 +78,31 @@ jobs:
     - name: Generate and submit dependency graph
       uses: gradle/actions/dependency-submission@af1da67850ed9a4cedd57bfd976089dd991e2582 # v4.0.0
 
+  deploy:
+
+    runs-on: self-hosted
+    needs: dependency-submission
+
+  steps:
+    # Клонируем репозиторий
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    # Собираем Docker-образ
+    - name: Build Docker image
+      run: |
+        docker build -t your-app-name:latest .
+
+    # Удаляем старый контейнер (если существует)
+    - name: Stop and remove old container
+      run: |
+        docker stop your-app-container || true
+        docker rm your-app-container || true
+
+    # Запускаем новый контейнер
+    - name: Run new container
+      run: |
+        docker run -d --name your-app-container -p 80:8080 your-app-name:latest
+
+
+    
