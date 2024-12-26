@@ -88,6 +88,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Set execution permissions for gradlew
+        run: chmod +x gradlew
+
       - name: Build with Gradle Wrapper
         run: ./gradlew build
 
